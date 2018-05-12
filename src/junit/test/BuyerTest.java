@@ -1,13 +1,12 @@
 package junit.test;
 
-import javax.persistence.ExcludeSuperclassListeners;
-
+import java.util.LinkedHashMap;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import cn.itcast.bean.QueryResult;
 import cn.itcast.bean.user.Buyer;
 import cn.itcast.service.user.BuyerService;
 
@@ -25,12 +24,31 @@ public class BuyerTest {
 	}
 	
 	@Test
+	public void exsit() {
+		System.out.println(buyerService.exsit("1"));
+	}
+	
+	@Test
+	public void getScrolldata() {
+		LinkedHashMap<String, String> orderby = new LinkedHashMap<>();
+		orderby.put("email", "asc");
+		orderby.put("password", "desc");
+		QueryResult<Buyer> qr = buyerService.getScrollData(0,5,"o.email=?1",new Object[]{"666"},orderby);
+		for (Buyer buyer : qr.getResultlist()) {
+			System.out.println(buyer.getEmail());
+		}
+		System.out.println("总记录数：" + qr.getRecordtotal());
+	}
+	
+	@Test
 	public void save() {
-		Buyer buyer = new Buyer();
-		buyer.setUsername("lin");
-		buyer.setPassword("123");
-		buyer.setEmail("lin@ss.com");
-		buyerService.save(buyer);
+		for(int i=1;i<30;i++) {
+			Buyer buyer = new Buyer();
+			buyer.setUsername("lin"+i);
+			buyer.setPassword("123"+(30-i));
+			buyer.setEmail("lin@ss.com"+i);
+			buyerService.save(buyer);
+		}
 	}
 	
 	@Test
