@@ -53,7 +53,7 @@ public class BuyerTest {
 	
 	@Test
 	public void find() {
-		Buyer buyer = buyerService.find("lin");
+		Buyer buyer = buyerService.find("zhangming");
 		System.out.println(buyer.getEmail());
 	}
 

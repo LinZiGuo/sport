@@ -18,22 +18,22 @@ function checkfm(form){
 </script>
 </head>
 <body bgcolor="#FFFFFF" text="#000000" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-<html:form action="/control/brand/manage" method="post" enctype="multipart/form-data" onsubmit="return checkfm(this)">
-<input type="hidden" name="method" value="edit">
-<html:hidden property="code"/>
+<form action="/control/brand/manage/edit" method="post" enctype="multipart/form-data" onsubmit="return checkfm(this)">
+<input type="hidden" name="code" value="${brand.code }">
 <br>
   <table width="90%" border="0" cellspacing="2" cellpadding="3" align="center">
     <tr bgcolor="6f8ac4"><td colspan="2"  > <font color="#FFFFFF">修改品牌：</font></td>
     </tr>
     <tr bgcolor="f5f5f5"> 
       <td width="22%" > <div align="right">品牌名称：</div></td>
-      <td width="78%"> <html:text property="name" size="50" maxlength="40"/>
+      <td width="78%">
+      <input name="name" type="text" size="50" maxlength="40" value="${brand.name }">
         <font color="#FF0000">*</font></td>
     </tr>
 	<tr bgcolor="f5f5f5"> 
       <td width="22%" > <div align="right">Logo图片：</div></td>
       <td width="78%"> <input type="file" name="logofile" size="50"><br/>
-     <c:if test="${!empty brandform.logoimagepath}"><img src="${brandform.logoimagepath}" width="100">
+     <c:if test="${!empty brand.logopath}"><img src="${brand.logopath}" width="100">
      </c:if> </td>
     </tr>
     <tr bgcolor="f5f5f5"> 
@@ -42,7 +42,7 @@ function checkfm(form){
         </div></td>
     </tr>
   </table>
-</html:form>
+</form>
 <br>
 </body>
 </html>

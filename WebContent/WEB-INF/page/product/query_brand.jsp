@@ -18,14 +18,15 @@ function checkfm(form){
 </script>
 </head>
 <body bgcolor="#FFFFFF" text="#000000" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-<html:form action="/control/brand/list" method="post"  onsubmit="return checkfm(this)">
-<html:hidden property="query" value="true"/>
+<form action="/control/brand/list" method="post"  onsubmit="return checkfm(this)">
+<input name="query" type="hidden" value="true"/>
   <table width="90%" border="0" cellspacing="2" cellpadding="3" align="center">
     <tr bgcolor="6f8ac4"><td colspan="2"> <font color="#FFFFFF">查询品牌：</font></td>
     </tr>
     <tr bgcolor="f5f5f5"> 
       <td width="22%" > <div align="right">品牌名称：</div></td>
-      <td width="78%"> <html:text property="name" size="50" maxlength="40"/>
+      <td width="78%"> 
+      	<input name="name" type="text" size="50" maxlength="40"/>
         <font color="#FF0000">*</font></td>
     </tr>
     <tr bgcolor="f5f5f5"> 
@@ -34,7 +35,7 @@ function checkfm(form){
         </div></td>
     </tr>
   </table>
-</html:form>
+</form>
 <br>
 </body>
 </html>

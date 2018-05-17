@@ -23,6 +23,8 @@ import com.sun.istack.internal.Nullable;
  */
 @Entity
 public class Buyer implements Serializable{
+
+	private static final long serialVersionUID = -1475697538663831725L;
 	/* 用户名 */
 	@Id
 	@Column(length=20)

@@ -1,5 +1,7 @@
 package cn.itcast.bean.user;
 
+import java.io.Serializable;
+
 import javax.annotation.Generated;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,7 +16,9 @@ import javax.persistence.OneToOne;
  *
  */
 @Entity
-public class ContactInfo {
+public class ContactInfo implements Serializable {
+
+	private static final long serialVersionUID = 9167374992222455707L;
 	/* 联系方式Id */
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

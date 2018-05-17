@@ -23,21 +23,22 @@ function checkfm(form){
 </script>
 </head>
 <body bgcolor="#FFFFFF" text="#000000" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-<html:form action="/control/product/type/manage" method="post"  onsubmit="return checkfm(this)">
-<html:hidden property="parentid"/>
-<input type="hidden" name="method" value="add">
+<form action="/control/product/type/manage/add" method="post"  onsubmit="return checkfm(this)">
 <br>
+<input type="hidden" name="parentid" value="${param.parentid }">
   <table width="90%" border="0" cellspacing="2" cellpadding="3" align="center">
     <tr bgcolor="6f8ac4"><td colspan="2"  > <font color="#FFFFFF">添加类别：</font></td>
     </tr>
     <tr bgcolor="f5f5f5"> 
       <td width="22%" > <div align="right">类别名称：</div></td>
-      <td width="78%"> <html:text property="name" size="50" maxlength="50"/>
+      <td width="78%">
+      <input name="name" type="text" size="50" maxlength="50">
         <font color="#FF0000">*</font></td>
     </tr>
 	<tr bgcolor="f5f5f5"> 
       <td width="22%" > <div align="right">备注(100字以内)：</div></td>
-      <td width="78%"> <html:text property="note" size="80" maxlength="100"/>
+      <td width="78%">
+      <input name="note" type="text" size="50" maxlength="50">
         </td>
     </tr>
     <tr bgcolor="f5f5f5"> 
@@ -46,7 +47,7 @@ function checkfm(form){
         </div></td>
     </tr>
   </table>
-</html:form>
+</form>
 <br>
 </body>
 </html>

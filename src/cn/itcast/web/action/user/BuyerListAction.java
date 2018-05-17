@@ -72,7 +72,7 @@ public class BuyerListAction extends ActionSupport implements ModelDriven<Buyer>
 		}
 		pageView.setQueryResult(qr);
 		request.setAttribute("pageView", pageView);
-		return SUCCESS;
+		return "list";
 	}
 	
 	@Action("queryUI")

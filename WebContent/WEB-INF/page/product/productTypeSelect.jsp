@@ -50,10 +50,10 @@ body {
 
 <body>
 <c:set var="menuout" value=""/><c:forEach items="${menutypes}" var="menu">
-	<c:set var="menuout" value="&gt;&gt;<a href='/control/product/manage.do?method=selectUI&typeid=${menu.typeid}'>${menu.name}</a> ${menuout}"/>
+	<c:set var="menuout" value="&gt;&gt;<a href='/control/product/manage/selectUI?typeid=${menu.typeid}'>${menu.name}</a> ${menuout}"/>
 </c:forEach>
 产品类别列表,请选择分类:<br>
-导航:<a href='<html:rewrite action="/control/product/manage"/>?method=selectUI'>顶级目录</a> <c:out value="${menuout}" escapeXml="false"/>
+导航:<a href='/control/product/manage/selectUI'>顶级目录</a> <c:out value="${menuout}" escapeXml="false"/>
 <form method="post" name="main" action="">
 <table width="100%" border="0" cellspacing="1" cellpadding="1">
   <input type="hidden" name="dicId">
@@ -65,7 +65,7 @@ body {
 	<c:forEach items="${types}" var="type" varStatus="loop">		
 	    <td>
 		<c:if test="${fn:length(type.childtypes)>0}">
-		<a href="<html:rewrite action="/control/product/manage"/>?method=selectUI&typeid=${type.typeid}"><b>${type.name}</b></a></c:if>
+		<a href="/control/product/manage/selectUI?typeid=${type.typeid}"><b>${type.name}</b></a></c:if>
 		<c:if test="${fn:length(type.childtypes)==0}"> <INPUT TYPE="radio" NAME="type" onclick="getDicName('${type.typeid}','${type.name}')">${type.name}</c:if>
 		</td>
 		<c:if test="${loop.count%5==0}"></tr><tr></c:if>

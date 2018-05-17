@@ -9,46 +9,48 @@
 </head>
 
 <body bgcolor="#FFFFFF" text="#000000" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-<html:form action="/control/product/list" method="post">
-<html:hidden property="typeid"/>
-<input name="query" value="true" type="hidden">
+<form action="/control/product/list" method="post">
+<input name="typeid" type="hidden" />
+<input name="query" value="true" type="hidden" />
   <table width="98%" border="0" cellspacing="1" cellpadding="3" align="center">
     <tr bgcolor="6f8ac4"> 
       <td colspan="2" ><font color="#FFFFFF">查询产品：</font></td>
     </tr>
     <tr bgcolor="f5f5f5"> 
       <td width="25%"> <div align="right">产品名称  ：</div></td>
-      <td width="75%"> <html:text property="name" size="50" maxlength="40"/></td>
+      <td width="75%">
+      <input name="name" type="text" size="50" maxlength="40"/>
     </tr>
     <tr bgcolor="f5f5f5"> 
       <td width="25%"> <div align="right">产品类别  ：</div></td>
       <td width="75%"> <input type="text" name="v_type_name" disabled="true" size="30" value="${typename}"/> 
-        <input type="button" name="select" value="选择..." onClick="javaScript:winOpen('<html:rewrite action="/control/product/manage"/>?method=selectUI','列表',600,400)">
+        <input type="button" name="select" value="选择..." onClick="javaScript:winOpen('/control/product/manage/selectUI','列表',600,400)">
       </td>
     </tr>
 	<tr bgcolor="f5f5f5"> 
       <td width="25%"> <div align="right">底(采购)价(元) ：</div></td>
       <td width="75%"> 
-在<html:text property="startbaseprice" size="10" maxlength="10" onkeypress="javascript:InputLongNumberCheck()"/>
-      与<html:text property="endbaseprice" size="10" maxlength="10" onkeypress="javascript:InputLongNumberCheck()"/>之间
+在<input name="startbaseprice" type="text" size="10" maxlength="10" onkeypress="javascript:InputLongNumberCheck()"/>
+      与<input name="endbaseprice" type="text" size="10" maxlength="10" onkeypress="javascript:InputLongNumberCheck()"/>之间
 </td>
     </tr>
 	<tr bgcolor="f5f5f5"> 
       <td width="25%"> <div align="right">销售价(元) ：</div></td>
-      <td width="75%"> 在<html:text property="startsellprice" size="10" maxlength="10" onkeypress="javascript:InputLongNumberCheck()"/>
-      与<html:text property="endsellprice" size="10" maxlength="10" onkeypress="javascript:InputLongNumberCheck()"/>之间
+      <td width="75%"> 在<input name="startsellprice" type="text" size="10" maxlength="10" onkeypress="javascript:InputLongNumberCheck()"/>
+      与<input name="endsellprice" type="text" size="10" maxlength="10" onkeypress="javascript:InputLongNumberCheck()"/>之间
       </td>
     </tr>
     <tr bgcolor="f5f5f5"> 
       <td width="25%"> <div align="right">货号 ：</div></td>
-      <td width="75%"> <html:text property="code" size="20" maxlength="30"/>(注:供货商提供的便于产品查找的编号)</td>
+      <td width="75%">
+      <input name="code" type="text" size="20" maxlength="30" />(注:供货商提供的便于产品查找的编号)</td>
     </tr>
 	<tr bgcolor="f5f5f5"> 
       <td width="25%"> <div align="right">品牌 ：</div></td>
-      <td width="75%"> <html:select property="brandid">
-          <html:option value="">***无***</html:option>
-          <html:optionsCollection name="brands" label="name" value="code"/>
-        </html:select></td>
+      <td width="75%">
+      	<s:select name="brandid" list="brands" listKey="code" listValue="name" headerKey="" headerValue="--请选择--">
+      	</s:select>
+      </td>
     </tr>
     <tr bgcolor="f5f5f5"> 
       <td colspan="2"> <div align="center"> 
@@ -57,7 +59,7 @@
         </div></td>
     </tr>
   </table>
-</html:form>
+</form>
 <br>
 </body>
 </html>
