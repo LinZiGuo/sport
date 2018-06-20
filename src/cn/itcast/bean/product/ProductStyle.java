@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import org.compass.annotations.Index;
 import org.compass.annotations.Searchable;
@@ -86,6 +87,16 @@ public class ProductStyle implements Serializable {
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	@Transient
+	public String getImageFullPath(){
+		return "/images/product/"+ this.getProduct().getType().getTypeid()+ "/"+
+		this.getProduct().getId()+ "/prototype/"+ this.imagename;
+	}
+	@Transient
+	public String getImage140FullPath(){
+		return "/images/product/"+ this.getProduct().getType().getTypeid()+ "/"+
+		this.getProduct().getId()+ "/140x/"+ this.imagename;
 	}
 	@Override
 	public int hashCode() {

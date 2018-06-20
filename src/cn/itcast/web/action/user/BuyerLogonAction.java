@@ -47,7 +47,7 @@ public class BuyerLogonAction extends ActionSupport implements ModelDriven<Buyer
 				//校验通过
 				request.getSession().setAttribute("user", buyerService.find(buyer.getUsername().trim()));
 				request.setAttribute("message", "用户登录成功");
-				request.setAttribute("urladdress", "/");
+				request.setAttribute("urladdress", "/customer/shopping/deliver");
 				return SUCCESS;
 			} else {
 				request.setAttribute("error", "用户名及密码有误");

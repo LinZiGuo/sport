@@ -10,6 +10,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -99,7 +100,7 @@ public class ProductInfo implements Serializable {
 	@Column(length=5,nullable=false)
 	private Sex sexrequest = Sex.NONE;
 	//产品样式
-	@OneToMany(cascade={CascadeType.REMOVE,CascadeType.PERSIST}, mappedBy="product")
+	@OneToMany(cascade={CascadeType.REMOVE,CascadeType.PERSIST}, mappedBy="product", fetch=FetchType.EAGER)
 	@OrderBy("visible desc, id asc")
 	@SearchableComponent
 	private Set<ProductStyle> styles = new HashSet<>();

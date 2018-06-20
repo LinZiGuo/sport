@@ -19,8 +19,8 @@
 </head>
 
 <body bgcolor="#FFFFFF" text="#000000" marginwidth="0" marginheight="0">
-<html:form action="/control/department/list" method="post">
-<html:hidden property="page"/>
+<form action="/control/department/list" method="post">
+<input type="hidden" name="page"/>
   <table width="98%" border="0" cellspacing="1" cellpadding="2" align="center">
     <tr ><td colspan="4" bgcolor="6f8ac4" align="right">
     	<%@ include file="/WEB-INF/page/share/fenye.jsp" %>
@@ -37,14 +37,14 @@
       <td bgcolor="f5f5f5"> <div align="center">${entry.departmentid}</div></td>
       <td bgcolor="f5f5f5"> <div align="center">
       <itcast:permission module="department" privilege="update">
-      <a href="<html:rewrite action="/control/department/manage"/>?method=editDepartmentUI&departmentid=${entry.departmentid}">
+      <a href="/control/department/manage/editUI?departmentid=${entry.departmentid}">
 	  <img src="/images/edit.gif" width="15" height="16" border="0"></a>
 	  </itcast:permission>
 	  </div></td>
       <td bgcolor="f5f5f5"> <div align="center">${entry.name}</div></td>
       <td bgcolor="f5f5f5"> <div align="center">
         <itcast:permission module="department" privilege="delete">
-         <a href="<html:rewrite action="/control/department/manage"/>?method=delete&departmentid=${entry.departmentid}">删除</a>
+         <a href="/control/department/manage/delete?departmentid=${entry.departmentid}">删除</a>
        </itcast:permission>
       </div></td>
 	</tr>
@@ -56,13 +56,13 @@
             <td width="5%"></td>
               <td width="85%">
               <itcast:permission module="department" privilege="insert">
-              <input type="button" class="frm_btn" onClick="javascript:window.location.href='<html:rewrite action="/control/department/manage"/>?method=addDepartmentUI'" value="添加部门"> &nbsp;&nbsp;
+              <input type="button" class="frm_btn" onClick="javascript:window.location.href='/control/department/manage/addUI'" value="添加部门"> &nbsp;&nbsp;
            	  </itcast:permission>
             </td>
           </tr>
         </table></td>
     </tr>
   </table>
-</html:form>
+</form>
 </body>
 </html>

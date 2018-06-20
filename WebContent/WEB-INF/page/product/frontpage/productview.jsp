@@ -28,7 +28,7 @@
 		var stypeid = form.styleid.value;
 		var productPrototypeImage = document.getElementById('productPrototypeImage_'+ stypeid);		
 		if(productPrototypeImage){
-			var path = "<html:rewrite action="/product/switch"/>?method=showimage&path="+ productPrototypeImage.value;			
+			var path = "/product/switch/showimage?path="+ productPrototypeImage.value;			
 			window.open (path ,"显示图片");
 		}
 	}
@@ -63,7 +63,7 @@
 </div><!-- 页面主体 左边end -->
 	
  <div id="Right" ><!-- 页面主体 右边 -->
-<form action="<html:rewrite action="/shopping/cart"/>" method="post" name="cart">
+<form action="/shopping/cart" method="post" name="cart">
 <INPUT TYPE="hidden" NAME="productid" value="${product.id}">
 <div id="browse_left"><c:set var="currentimage"/><c:set var="imagecount" value="0"/>
 <c:forEach items="${product.styles}" var="style"><c:if test="${style.visible}"><c:set var="currentimage" value="${style}"/><c:set var="imagecount" value="${imagecount+1}"/></c:if></c:forEach>
@@ -99,7 +99,7 @@
 											  
 											 </div>
 									<ul>
-										<li>市场价：<s>${product.marketprice}</s> 元 <font color='#ff6f02'>本站价：<b>${product.sellprice} 元</b></font> 节省：<font color='#ff6f02'>${product.savedPrice }</font> 元										</li>
+										<li>市场价：<s>${product.marketprice}</s> 元 <font color='#ff6f02'>本站价：<b>${product.sellprice} 元</b></font> 节省：<font color='#ff6f02'>${product.marketprice-product.sellprice }</font> 元										</li>
 									  	<li class="right_img"><INPUT TYPE="image" SRC="/images/global/sale.gif"></li>
 																				<li class="guopiprice">
 										[ <IMG src="/images/global/2j4.gif" border="0">&nbsp;<A href="http://www.babasport.com/cache/news/6/9.shtml" target="_blank">配送说明</A> ]&nbsp;&nbsp;&nbsp;&nbsp;[ <IMG src="/images/global/2j4.gif" border="0">&nbsp;<A href="http://www.babasport.com/cache/news/4/24.shtml" target="_blank">付款方式</A> ]

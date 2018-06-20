@@ -27,7 +27,7 @@ function getradiovalue(objradio){
 					}
 				}
 			}else{
-				if(objradio.checked) result = objradio.value;
+				result = objradio.value;
 			}
 		}catch(e){result = "";}
 		return result;
@@ -77,7 +77,7 @@ function isValidEmail(inEmail){
 			return false;
 		}
 		if(form.mobile.value.trim()!=""){
-			if(!/^1[35]\d{9}$/.test(form.mobile.value.trim())){
+			if(!/^[1][3,4,5,7,8][0-9]{9}$/.test(form.mobile.value.trim())){
 				alert("收货人的手机号格式不正确");
 				return false;
 			}
@@ -167,9 +167,8 @@ function sendForm(){
 <META content="MSHTML 6.00.2900.2769" name="GENERATOR">
 </HEAD>
 <BODY onload="pageinit()">
-<html:form action="/customer/shopping/manage" method="post">
+<form action="/customer/shopping/manage/saveDeliverInfo" method="post">
 <input type="hidden" name="directUrl" value="${param.directUrl }">
-<INPUT TYPE="hidden" NAME="method" value="saveDeliverInfo">
 <TABLE cellSpacing=0 cellPadding=0 align="center" border=0>
   <TBODY>
   <TR>
@@ -198,23 +197,25 @@ function sendForm(){
         <TR>
           <TD width=214>
             <DIV align="right">收货人姓名<span id="NameLable"></span>：</DIV></TD>
-          <TD><html:text property="recipients" maxlength="8" size="30"/><FONT color="#ff0000">*</FONT>&nbsp;<html:radio property="gender" value="MAN"/>先生 <html:radio property="gender" value="WOMEN"/>女士</TD></TR>
+          <TD><input type="text" name="recipients" value="${recipients }" maxlength="8" size="30"/><FONT color="#ff0000">*</FONT>&nbsp;
+          <input type="radio" name="gender" value="MAN" <c:if test="${gender=='MAN' }">checked='checked'</c:if>/>先生 
+          <input type="radio" name="gender" value="WOMEN" <c:if test="${gender=='WOMEN' }">checked='checked'</c:if>/>女士</TD></TR>
         <TR>
           <TD height="27">
             <DIV align="right">收货人地址<span id="AddressLable"></span>： </DIV></TD>
-          <TD><html:text property="address" maxlength="100" size="60"/><FONT 
+          <TD><input type="text" name="address" value="${address }" maxlength="100" size="60"/><FONT 
             color="#ff0000">*</FONT></TD></TR>
         <TR>
           <TD height="27">
             <DIV align="right">电子邮件<span id="EmailLable"></span>：</DIV></TD>
-          <TD><html:text property="email" maxlength="45" size="30"/><FONT color="#ff0000">*</FONT></TD></TR>
+          <TD><input type="text" name="email" value="${email }" maxlength="45" size="30"/><FONT color="#ff0000">*</FONT></TD></TR>
         <TR>
           <TD height="27">
             <DIV align="right">邮政编码<span id="PostalcodeLable"></span>：</DIV></TD>
-          <TD><html:text property="postalcode" maxlength="6" size="20"/><FONT 
+          <TD><input type="text" name="postalcode" value="${postalcode }" maxlength="6" size="20"/><FONT 
             color="#ff0000">*</FONT> <font color="#484848">请正确填写邮政编码，以免延误您的订单送达时间。不知道邮编？<a href="http://www.cpdc.com.cn/webmodules/postcode/CPDC_03G01.aspx" target="_blank">请进这里查询</a></font></TD></TR>
         <TR>
-          <TD><html:hidden property="tel" />
+          <TD><input type="hidden" name="tel" value="${tel }"/>
             <DIV align=right>电话<span id="TelLable"></span>：</DIV></TD>
           <TD><table width="30%" border="0" cellpadding="0" cellspacing="2">
             <tr>
@@ -232,13 +233,13 @@ function sendForm(){
         <TR>
           <TD>
             <DIV align=right>手机<span id="MobileLable"></span>：</DIV></TD>
-          <TD><html:text property="mobile" maxlength="15" size="20"/> 
+          <TD><input type="text" name="mobile" value="${mobile }" maxlength="15" size="20"/> 
 <font color="#484848">（手机和电话至少有一项必填）</font></TD></TR>
         <TR>
           <TD>
             <DIV align="right">购买人与收货人是否相同<FONT color="#ff0000">*</FONT>：</DIV></TD>
-          <TD><html:radio property="buyerIsrecipients" value="true" onclick="javascript:buyerinfoSelect(this.value)"/> <b>相同</b>
-		  <html:radio property="buyerIsrecipients" value="false" onclick="javascript:buyerinfoSelect(this.value)"/> <b>不相同</b> </TD>
+          <TD><input type="radio" name="buyerIsrecipients" value="true" onclick="javascript:buyerinfoSelect(this.value)" <c:if test="${buyerIsrecipients==true }">checked='checked'</c:if>/> <b>相同</b>
+		  <input type="radio" name="buyerIsrecipients" value="false" onclick="javascript:buyerinfoSelect(this.value)" <c:if test="${buyerIsrecipients==false }">checked='checked'</c:if>/> <b>不相同</b> </TD>
         </TR>
 		  <!---------------------------->
         <TR id="buyerinfoInput" style="DISPLAY: none">
@@ -247,19 +248,20 @@ function sendForm(){
 		  <TABLE cellSpacing="0" cellPadding="0" width="100%" border="0">
             <TR>
               <TD align="right" height="25"><FONT color="#f47a22">*</FONT> 购买者姓名：</TD>
-              <TD align="left"><html:text property="buyer" maxlength="8" size="30" />
-              &nbsp;<html:radio property="buyer_gender" value="MAN" />先生 <html:radio property="buyer_gender" value="WOMEN"/>女士</TD>
+              <TD align="left"><input type="text" name="buyer" value="${buyer }" maxlength="8" size="30" />
+              &nbsp;<input type="radio" name="buyer_gender" value="MAN" <c:if test="${gender=='MAN' }">checked='checked'</c:if>/>先生 
+              <input type="radio" name="buyer_gender" value="WOMEN" <c:if test="${gender=='WOMEN' }">checked='checked'</c:if>/>女士</TD>
             </TR>
             <TR>
               <TD align="right" height="25"><FONT color="#f47a22">*</FONT> 详细地址：</TD>
-              <TD align="left"><html:text property="buyer_address" maxlength="100" size="60" />
+              <TD align="left"><input type="text" name="buyer_address" value="${buyer_address }" maxlength="100" size="60" />
               </TD>
             </TR>
             <TR>
               <TD align="right" height="25"><FONT color="#f47a22">*</FONT> 邮政编码：</TD>
               <TD><TABLE cellSpacing="0" cellPadding="0" border="0">
                   <TR>
-                    <TD align="left" height="20"><html:text property="buyer_postalcode" maxlength="6" size="20"/>
+                    <TD align="left" height="20"><input type="text" name="buyer_postalcode" value="${buyer_postalcode }" maxlength="6" size="20"/>
                     </TD>
                     <TD align="left">&nbsp;&nbsp;<font color="#484848">请正确填写邮政编码，以免延误您的订单送达时间。</font> </TD>
                   </TR>
@@ -269,10 +271,10 @@ function sendForm(){
               <TD align="right" height="25"><FONT color="#f47a22">*</FONT> 电话：</TD>
               <TD><TABLE cellSpacing="0" cellPadding="0" border="0">
                   <TR>
-                    <TD align="left" colSpan="3"><html:text property="buyer_mobile" maxlength="15" size="20"/> </TD>
+                    <TD align="left" colSpan="3"><input type="text" name="buyer_mobile" maxlength="15" size="20"/> </TD>
                     <TD height="25">&nbsp;移动电话</TD>
                   </TR>
-                  <TR><html:hidden property="buyer_tel" />
+                  <TR><input type="hidden" name="buyer_tel" value="${buyer_tel }" />
 					<td><input value="010" size="4" name="buyer_forepart" maxlength="4" onkeypress="javascript:InputIntNumberCheck()"></td>
 					<td><input name="buyer_maintel" size="8" maxlength="8" onkeypress="javascript:InputIntNumberCheck()"></td>
 					<td><input name="buyer_extension" size="4" maxlength="4" onkeypress="javascript:InputIntNumberCheck()"></td>
@@ -300,7 +302,7 @@ function sendForm(){
 
 		  </TBODY></TABLE></DIV>
       </TD></TR></TBODY></TABLE>
-</html:form>
+</form>
 
 <jsp:include page="/WEB-INF/page/share/Foot.jsp"/>
 </BODY></HTML>

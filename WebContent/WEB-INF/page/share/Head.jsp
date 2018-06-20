@@ -1,14 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%@include file="/WEB-INF/page/share/taglib.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@include file="/WEB-INF/page/share/taglib.jsp" %>
+<!-- <!-- <script type="text/javascript"> --> -->
+<!-- // window.onload = function(){ -->
+<!-- // 	var obj_lis = document.getElementById("ChannelMenuItems").getElementsByTagName("li"); -->
+<!-- // 	for(i=0;i<obj_lis.length;i++){ -->
+<!-- // 		obj_lis[i].onclick = function(){ -->
+<!-- // 			alert(this.id); -->
+<!-- // 			if(this.id=="ProducType1Home"){ -->
+<!-- // 				this.className="cur"; -->
+<!-- // 			} -->
+<!-- // 		} -->
+<!-- // 	} -->
+<!-- // } -->
+<!-- <!-- </script> --> -->
 <div id="Head">
   <div id="HeadTop">
     <div id="Logo"><a href="http://www.babasport.com/" target=_top><img alt=中国最大、最安全的户外用品、体育用品网上交易平台！ src="/images/global/logo.gif" border=0 /></a> </div>
     <div id="HeadNavBar">
       <ul>
-        <li class="NoSep"><a id="MyBuyCar"  href="/shopping/cart.do" ><font color="blue"><Strong>购物车</Strong></font></a> </li>
-        <li><a href="/user/reg.do?method=regUI" >新用户注册</a> </li>
-        <li><a href="/user/logon.do" >用户登录</a> </li>
+        <li class="NoSep"><a id="MyBuyCar"  href="/shopping/cartUI" ><font color="blue"><Strong>购物车</Strong></font></a> </li>
+        <li><a href="/user/reg/regUI" >新用户注册</a> </li>
+        <li><a href="/user/logon" >用户登录</a> </li>
          <c:if test="${!empty user}"> <li><a href="/user/logout.do" >退出登录</a> </li></c:if>
         <li><a href="">帮助中心</a> </li>
         <li class="phone">服务热线：010-64663070</li>
@@ -18,17 +30,17 @@
   <div id="ChannelMenu">
 	<UL id="ChannelMenuItems">
 		<LI id="MenuHome"><a href="http://www.babasport.com"><span>首页</span></a></LI>
-		<LI id="ProducType1Home"><a href="/product/list/display.do?typeid=1"><span>瑜珈用品</span></a></LI>
-		<LI id="ProducType2Home"><a href="/product/list/display.do?typeid=1"><span>户外用品</span></a></LI>
-		<LI id="ProducType3Home"><a href="/product/list/display.do?typeid=1"><span>健身器材</span></a></LI>
-		<LI id="ProducType8Home"><a href="/product/list/display.do?typeid=1"><span>运动鞋</span></a></LI>
+		<LI id="ProducType1Home"><a href="/product/list/display?typeid=1"><span>瑜珈用品</span></a></LI>
+		<LI id="ProducType2Home"><a href="/product/list/display?typeid=2"><span>户外用品</span></a></LI>
+		<LI id="ProducType3Home"><a href="/product/list/display?typeid=3"><span>健身器材</span></a></LI>
+		<LI id="ProducType8Home"><a href="/product/list/display?typeid=4"><span>运动鞋</span></a></LI>
 		<LI id="MyAccountHome"><a href="/"><span>我的账户</span></a></LI>
 	</UL>
 <!--  SearchBox -->
 <div id="SearchBox">
 	  <div id="SearchBoxTop">
 		  <div id="SearchForm">
-			<form action="/product/query.do" method="post" name="search" id="search">
+			<form action="/product/query" method="post" name="search" id="search">
 
 			 <span class="name">商品搜索: </span><input id="word" name="word" accesskey="s" size="100" maxlength="100" value="${param.word }"/>
 

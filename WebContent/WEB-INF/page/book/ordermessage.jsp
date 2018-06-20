@@ -21,9 +21,8 @@ function checkfm(form){
 </script>
 </head>
 <body bgcolor="#FFFFFF" text="#000000" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-<html:form action="/control/order/manage" method="post" onsubmit="return checkfm(this)">
-<html:hidden property="orderid"/>
-<input type="hidden" name="method" value="addMessage">
+<form action="/control/order/manage/addMessage" method="post" onsubmit="return checkfm(this)">
+<input type="hidden" name="orderid" value="${param.orderid }"/>
   <table width="90%" border="0" cellspacing="2" cellpadding="3" align="center">
     <tr bgcolor="6f8ac4"><td colspan="2"  > <font color="#FFFFFF">添加订单留言：</font></td>
     </tr>
@@ -38,7 +37,7 @@ function checkfm(form){
         </div></td>
     </tr>
   </table>
-</html:form>
+</form>
 <br>
 </body>
 </html>

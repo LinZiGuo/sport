@@ -13,15 +13,14 @@ function checkfm(form){
 </script>
 </head>
 <body bgcolor="#FFFFFF" text="#000000" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-<html:form action="/control/order/manage" method="post" onsubmit="return checkfm(this)">
-<html:hidden property="orderid"/>
-<input type="hidden" name="method" value="modifyDeliverFee">
+<form action="/control/order/manage/modifyDeliverFee" method="post" onsubmit="return checkfm(this)">
+<input type="hidden" name="orderid" value="${param.orderid }"/>
   <table width="90%" border="0" cellspacing="2" cellpadding="3" align="center">
     <tr bgcolor="6f8ac4"><td colspan="2"  > <font color="#FFFFFF">修改配送费：</font></td>
     </tr>
     <tr bgcolor="f5f5f5"> 
       <td width="22%" > <div align="right">配送费：</div></td>
-      <td width="78%"> <html:text property="fee" size="10" maxlength="5"/>
+      <td width="78%"> <input type="text" name="fee" value="${fee }" size="10" maxlength="5"/>
         <font color="#FF0000">*</font></td>
     </tr>
     <tr bgcolor="f5f5f5"> 
@@ -30,7 +29,7 @@ function checkfm(form){
         </div></td>
     </tr>
   </table>
-</html:form>
+</form>
 <br>
 </body>
 </html>

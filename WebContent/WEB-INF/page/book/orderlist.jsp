@@ -28,7 +28,7 @@
 	}
 	function _action(methodName){
 		var form = document.forms[0];
-		form.action='<html:rewrite action="/control/order/manage"/>?method='+ methodName;
+		form.action='/control/order/manage/'+ methodName;
 		form.submit();
 	}
 	function selectItem(items){
@@ -49,15 +49,14 @@
 </head>
 
 <body bgcolor="#FFFFFF" text="#000000" marginwidth="0" marginheight="0">
-<html:form action="/control/order/list" method="post">
-<html:hidden property="page"/>
-<html:hidden property="query"/>
-<html:hidden property="orderid"/>
-<html:hidden property="state"/>
-<html:hidden property="username"/>
-<html:hidden property="recipients"/>
-<html:hidden property="buyer"/>
-<input name="method" type="hidden">
+<form action="/control/order/list" method="post">
+<input type="hidden" name="page"/>
+<input type="hidden" name="query"/>
+<input type="hidden" name="orderid"/>
+<input type="hidden" name="state"/>
+<input type="hidden" name="username"/>
+<input type="hidden" name="recipients"/>
+<input type="hidden" name="buyer"/>
   <table width="98%" border="0" cellspacing="1" cellpadding="2" align="center">
     <tr ><td colspan="12" bgcolor="6f8ac4" align="right">
     	<%@ include file="/WEB-INF/page/share/fenye.jsp" %>
@@ -92,7 +91,7 @@
 	  <td bgcolor="f5f5f5"> <div align="center">${entry.state.name }</div></td>
 	  <td bgcolor="f5f5f5"> <div align="center">
 	  <c:if test="${empty entry.lockuser || entry.lockuser==employee.username}">
-		 <a href="<html:rewrite action="/control/order/view"/>?orderid=${entry.orderid}">载入订单</a>
+		 <a href="/control/order/view?orderid=${entry.orderid}">载入订单</a>
 	 </c:if>
 	  <c:if test="${!empty entry.lockuser && entry.lockuser!=employee.username}">
 		 <font color="red">订单已锁定</font>
@@ -112,6 +111,6 @@
         </table></td>
     </tr>
   </table>
-</html:form>
+</form>
 </body>
 </html>

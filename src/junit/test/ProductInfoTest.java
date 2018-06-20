@@ -1,5 +1,7 @@
 package junit.test;
 
+import java.util.List;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -7,6 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type;
 
+import cn.itcast.bean.product.Brand;
 import cn.itcast.bean.product.ProductInfo;
 import cn.itcast.bean.product.ProductType;
 import cn.itcast.bean.product.Sex;
@@ -45,5 +48,24 @@ public class ProductInfoTest {
 			productInfoService.save(productInfo);
 		}
 	}
+	
+	@Test
+	public void find() {
+		Integer id = 2;
+		productInfoService.find(id);
+	}
+	
+	@Test
+	public void getBrandsByProductTypeid() {
+		List<Brand> list = productInfoService.getBrandsByProductTypeid(new Integer[] {5,7});
+		System.out.println(list.toString());
+	}
 
+	@Test
+	public void getTopSell() {
+		List<ProductInfo> list = productInfoService.getTopSell(7, 10);
+		for (ProductInfo productInfo : list) {
+			System.out.println(productInfo.getId()+":"+productInfo.getName());
+		}
+	}
 }

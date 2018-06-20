@@ -193,7 +193,7 @@ a:visited {  color:#FF6600; text-decoration: none}
   </tr>
   <tr> 
     <td width="50"><img src="/images/vertline.gif" border=0><img src="/images/lastnodeline.gif" align="absMiddle" border=0 width="16" height="22"><img src="/images/doctemp.gif" align="absMiddle" border="0" width="16" height="16"></td>
-    <td width="123"> <a href="/control/employee/manage?method=query">员工查询</a> </td>
+    <td width="123"> <a href="/control/employee/manage/query">员工查询</a> </td>
   </tr>  
   <tr> 
     <td width="50"><img src="/images/vertline.gif" border=0><img src="/images/lastnodeline.gif" align="absMiddle" border=0 width="16" height="22"><img src="/images/doctemp.gif" align="absMiddle" border="0" width="16" height="16"></td>

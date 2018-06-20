@@ -12,6 +12,10 @@ import cn.itcast.bean.QueryResult;
  */
 public interface DAO<T> {
 	/**
+	 * 清除一级缓存的数据
+	 */
+	public void clear();
+	/**
 	 * 得到所有数据
 	 * @return
 	 */

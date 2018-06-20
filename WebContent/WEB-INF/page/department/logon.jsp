@@ -39,7 +39,7 @@ function locateparentwindow(){
 </head>
 
 <body onload="JavaScript:locateparentwindow()">
-<html:form action="/employee/logon" method="post">
+<form action="/employee/logon" method="post">
   <c:if test="${!empty message}"><p align="center"><font color="red">${message }</font></p></c:if> 
   <TABLE align="center" cellSpacing=0 cellPadding=0 width=555 border=0 style="border-collapse: collapse" bordercolor="#111111">
     <TBODY>
@@ -82,6 +82,6 @@ function locateparentwindow(){
       </TR>
     </TBODY>
   </TABLE>
-</html:form>
+</form>
 </body>
 </html>

@@ -36,11 +36,11 @@ A.subnav:hover {
 <SCRIPT LANGUAGE="JavaScript">
 <!--
 function ActionEvent(methodname, orderid){
-	window.location.href = '<html:rewrite action="/control/order/manage"/>?method='+ methodname+ '&orderid='+ orderid;
+	window.location.href = '/control/order/manage/'+ methodname+ '?orderid='+ orderid;
 }
 function deleteOrderItem(orderItemid, orderid){
 	if(confirm('\n您确认删除该项吗?')){
-		window.location.href ="<html:rewrite action="/control/order/manage"/>?method=deleteOrderItem&orderitemid="+ orderItemid+"&orderid="+orderid;
+		window.location.href ="/control/order/manage/deleteOrderItem?orderitemid="+ orderItemid+"&orderid="+orderid;
 	}
 }
 //-->
@@ -57,9 +57,9 @@ function deleteOrderItem(orderItemid, orderid){
     </table>
       <table width="100%" border="0" align="center" cellpadding="3" cellspacing="2">
         <tr>
-          <td colspan="4" bgcolor="#FFFFFF"><strong>订购者信息 </strong> <a href="<html:rewrite action="/control/order/manage"/>?method=modifyContactInfoUI&contactid=${order.orderContactInfo.contactid }">修改</a></td>
+          <td colspan="4" bgcolor="#FFFFFF"><strong>订购者信息 </strong> <a href="/control/order/manage/modifyContactInfoUI?contactid=${order.orderContactInfo.contactid }">修改</a></td>
           <td align="center" bgcolor="#FFFFFF">支付方式</td>
-          <td colspan="2" bgcolor="#FFFFFF">${order.paymentWay.name }  <a href="<html:rewrite action="/control/order/manage"/>?method=modifyPaymentWayUI&orderid=${order.orderid }">修改</a></td>
+          <td colspan="2" bgcolor="#FFFFFF">${order.paymentWay.name }  <a href="/control/order/manage/modifyPaymentWayUI?orderid=${order.orderid }">修改</a></td>
         </tr>
         <tr>
           <td width="13%" align="center" bgcolor="#FFFFFF">姓名</td>
@@ -80,9 +80,9 @@ function deleteOrderItem(orderItemid, orderid){
           <td colspan="6" bgcolor="#FFFFFF">${order.note}</td>
         </tr>
         <tr>
-          <td colspan="4" bgcolor="#FFFFFF"><strong>收货人信息</strong> <a href="<html:rewrite action="/control/order/manage"/>?method=modifyDeliverInfoUI&deliverid=${order.orderDeliverInfo.deliverid }">修改</a></td>
+          <td colspan="4" bgcolor="#FFFFFF"><strong>收货人信息</strong> <a href="/control/order/manage/modifyDeliverInfoUI?deliverid=${order.orderDeliverInfo.deliverid }">修改</a></td>
           <td align="center" bgcolor="#FFFFFF">送货方式</td>
-          <td colspan="2" bgcolor="#FFFFFF">${order.orderDeliverInfo.deliverWay.name }  <a href="<html:rewrite action="/control/order/manage"/>?method=modifyDeliverWayUI&orderid=${order.orderid }">修改</a></td>
+          <td colspan="2" bgcolor="#FFFFFF">${order.orderDeliverInfo.deliverWay.name }  <a href="/control/order/manage/modifyDeliverWayUI?orderid=${order.orderid }">修改</a></td>
         </tr>
         <tr>
           <td align="center" bgcolor="#FFFFFF">姓名</td>
@@ -120,12 +120,12 @@ function deleteOrderItem(orderItemid, orderid){
           <td align="center" bgcolor="#FFFFFF">${item.productid }</td>
           <td colspan="3" align="center" bgcolor="#FFFFFF">${item.productName } <font color="red">[${item.styleName }]</font></td>
           <td align="center" bgcolor="#FFFFFF">￥${item.productPrice }</td>
-          <td align="center" bgcolor="#FFFFFF">${item.amount } <a href="<html:rewrite action="/control/order/manage"/>?method=modifyProductAmountUI&orderitemid=${item.itemid }">修改</a></td>
+          <td align="center" bgcolor="#FFFFFF">${item.amount } <a href="/control/order/manage/modifyProductAmountUI?orderitemid=${item.itemid }">修改</a></td>
           <td align="center" bgcolor="#FFFFFF"><a href="JavaScript:deleteOrderItem('${item.itemid }','${order.orderid }')">删除</a></td>
         </tr>
 </c:forEach>
         <tr>
-          <td colspan="7" align="right" bgcolor="#FFFFFF"><p>商品合计：￥${order.productTotalPrice }元&nbsp;&nbsp;配送费：￥${order.deliverFee }元 <a href="<html:rewrite action="/control/order/manage"/>?method=modifyDeliverFeeUI&orderid=${order.orderid}">修改</a>&nbsp;&nbsp;订单合计：￥${order.totalPrice }元<br />
+          <td colspan="7" align="right" bgcolor="#FFFFFF"><p>商品合计：￥${order.productTotalPrice }元&nbsp;&nbsp;配送费：￥${order.deliverFee }元 <a href="/control/order/manage/modifyDeliverFeeUI?orderid=${order.orderid}">修改</a>&nbsp;&nbsp;订单合计：￥${order.totalPrice }元<br />
             
 			&nbsp;&nbsp;<strong>应付金额：</strong>￥${order.payablefee }元</p>          </td>
         </tr>
@@ -153,15 +153,15 @@ function deleteOrderItem(orderItemid, orderid){
     <c:if test="${order.state=='DELIVERED' && order.paymentWay!='COD'}">
     <input type="button" value="已经收货" onclick="JavaScript:ActionEvent('turnReceived', '${order.orderid }')"/>&nbsp;	
     </c:if>
-    <input type="button" value="打印订单" onclick="JavaScript:winOpen('<html:rewrite action="/control/order/manage"/>?method=printOrder&orderid=${order.orderid }','打印',700,450)"/>&nbsp;
-	<input type="button" value="解锁退出" onclick="JavaScript:window.location.href='<html:rewrite action="/control/order/manage"/>?method=employeeUnlockOrder&orderid=${order.orderid }'"/>
+    <input type="button" value="打印订单" onclick="JavaScript:winOpen('/control/order/manage/printOrder?orderid=${order.orderid }','打印',700,450)"/>&nbsp;
+	<input type="button" value="解锁退出" onclick="JavaScript:window.location.href='/control/order/manage/employeeUnlockOrder?orderid=${order.orderid }'"/>
 	</td>
   </tr>
 </table>
 <br />
 <table width="90%" border="0" align="center" cellpadding="2" cellspacing="2">
   <tr>
-    <td colspan="2"  bgcolor="6f8ac4"><FONT COLOR="#FFFFFF">客服留言</FONT> &nbsp; <input type="button" value="客服留言" onclick="JavaScript:window.location.href='<html:rewrite action="/control/order/manage"/>?method=addMessageUI&orderid=${order.orderid}'"/></td>
+    <td colspan="2"  bgcolor="6f8ac4"><FONT COLOR="#FFFFFF">客服留言</FONT> &nbsp; <input type="button" value="客服留言" onclick="JavaScript:window.location.href='/control/order/manage/addMessageUI?orderid=${order.orderid}'"/></td>
   </tr>
   <tr>
     <td width="30%" align="center" bgcolor="#FFFFCC">留言者/时间</td>

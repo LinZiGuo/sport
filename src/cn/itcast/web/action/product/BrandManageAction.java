@@ -42,6 +42,7 @@ import com.sun.org.apache.bcel.internal.generic.NEW;
 
 import cn.itcast.bean.product.Brand;
 import cn.itcast.service.product.BrandService;
+import cn.itcast.utils.ImageSizer;
 import cn.itcast.utils.UploadFile;
 @Controller("/control/brand/manage")
 @ParentPackage("struts-default")
@@ -57,7 +58,6 @@ public class BrandManageAction extends ActionSupport implements ModelDriven<Bran
 	private File logofile;
 	private String logofileContentType;
 	private String logofileFileName;
-	private String destPath;
 
 	public File getLogofile() {
 		return logofile;
@@ -81,14 +81,6 @@ public class BrandManageAction extends ActionSupport implements ModelDriven<Bran
 
 	public void setLogofileFileName(String logofileFileName) {
 		this.logofileFileName = logofileFileName;
-	}
-
-	public String getDestPath() {
-		return destPath;
-	}
-
-	public void setDestPath(String destPath) {
-		this.destPath = destPath;
 	}
 
 	@Resource
@@ -125,31 +117,22 @@ public class BrandManageAction extends ActionSupport implements ModelDriven<Bran
 			request.setAttribute("message", "图片格式不正确");
 			return SUCCESS;
 		}
+		if (logofile.length()>204800) {
+			request.setAttribute("message", "图片不能大于200K");
+			return SUCCESS;
+		}
 		if (logofile != null && logofile.length() > 0) {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd/HH");
 			//构建图片保存的目录
 			String logopathdir = "/images/brand/" + dateFormat.format(new Date());
 			//得到图片保存目录的真实路径
 			String logorealpathdir = request.getSession().getServletContext().getRealPath(logopathdir);
-			File logosavedir = new File(logorealpathdir);
-			//如果目录不存在就创建
-			if (!logosavedir.exists()) {
-				logosavedir.mkdirs();
-			}
 			//构建文件名称
 			String ext = UploadFile.getExt(logofileFileName);
 			String imagename = UUID.randomUUID().toString() + "." + ext;
 			brand.setLogopath(logopathdir+"/"+imagename);
 			brand.setCode(imagename.substring(0, 36));
-			FileInputStream fileInputStream = new FileInputStream(logofile);
-			FileOutputStream fileOutputStream = new FileOutputStream(new File(logorealpathdir, imagename));
-			byte[] bs = new byte[1024];
-			int len;
-			while ((len = fileInputStream.read(bs)) != -1) {
-				fileOutputStream.write(bs, 0, len);
-			}
-			fileInputStream.close();
-			fileOutputStream.close();
+			UploadFile.saveFile(logorealpathdir, logofile, imagename);
 		}
 		brandService.save(brand);
 		request.setAttribute("message", "添加品牌成功");
@@ -185,6 +168,10 @@ public class BrandManageAction extends ActionSupport implements ModelDriven<Bran
 			request.setAttribute("message", "图片格式不正确");
 			return SUCCESS;
 		}
+		if (logofile.length()>204800) {
+			request.setAttribute("message", "图片不能大于200K");
+			return SUCCESS;
+		}
 		if (logofile != null && logofile.length() > 0) {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd/HH");
 			//构建图片保存的目录
@@ -192,23 +179,11 @@ public class BrandManageAction extends ActionSupport implements ModelDriven<Bran
 			//得到图片保存目录的真实路径
 			String logorealpathdir = request.getSession().getServletContext().getRealPath(logopathdir);
 			File logosavedir = new File(logorealpathdir);
-			//如果目录不存在就创建
-			if (!logosavedir.exists()) {
-				logosavedir.mkdirs();
-			}
 			//构建文件名称
 			String ext = UploadFile.getExt(logofileFileName);
 			String imagename = UUID.randomUUID().toString() + "." + ext;
 			newBrand.setLogopath(logopathdir+"/"+imagename);
-			FileInputStream fileInputStream = new FileInputStream(logofile);
-			FileOutputStream fileOutputStream = new FileOutputStream(new File(logorealpathdir, imagename));
-			byte[] bs = new byte[1024];
-			int len;
-			while ((len = fileInputStream.read(bs)) != -1) {
-				fileOutputStream.write(bs, 0, len);
-			}
-			fileInputStream.close();
-			fileOutputStream.close();
+			UploadFile.saveFile(logorealpathdir, logofile, imagename);
 		}
 		brandService.update(newBrand);
 		request.setAttribute("message", "修改品牌成功");

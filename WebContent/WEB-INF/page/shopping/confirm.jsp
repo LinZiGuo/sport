@@ -34,8 +34,7 @@ function validateForm(){
 </TABLE>
 <BR>
 
-<html:form action="/customer/shopping/manage" method="post">
-<INPUT TYPE="hidden" NAME="method" value="saveorder">
+<form action="/customer/shopping/manage/saveorder" method="post">
 <TABLE cellSpacing=0 cellPadding=0 width="90%" align=center border=0>
   <TBODY>
   <TR>
@@ -74,7 +73,7 @@ function validateForm(){
                     <TBODY>
                       <TR>
                         <TD width=184 
-                        bgColor=#eeeeee>&nbsp;<STRONG>商品信息：</STRONG><A href="<html:rewrite action="/shopping/cart"/>?directUrl=${directUrl }"><IMG height=17 src="/images/buy/az-s-change.gif" width=45 border=0></A></TD>
+                        bgColor=#eeeeee>&nbsp;<STRONG>商品信息：</STRONG><A href="/shopping/cartUI?directUrl=${directUrl }"><IMG height=17 src="/images/buy/az-s-change.gif" width=45 border=0></A></TD>
                         <TD width="408" bgColor=#eeeeee></TD>
                       </TR>
                     </TBODY>
@@ -91,7 +90,7 @@ function validateForm(){
 <c:forEach items="${buyCart.items}" var="item">
       <TR>
         <TD width="68%" height="33">
-		<STRONG><A href="<html:rewrite action="/product/view"/>?productid=${item.product.id }" target="_blank">${item.product.name }</A></STRONG><span class="h3color">[颜色/样式：<c:forEach items="${item.product.styles}" var="style">${style.name}</c:forEach>]</span> </TD>
+		<STRONG><A href="/product/view?productid=${item.product.id }" target="_blank">${item.product.name }</A></STRONG><span class="h3color">[颜色/样式：<c:forEach items="${item.product.styles}" var="style">${style.name}</c:forEach>]</span> </TD>
         <TD width="11%" align="center">数量：${item.amount }</TD>
         <TD width="21%">单价：￥<span class="Price">${item.product.sellprice }元</SPAN></TD>
       </TR>
@@ -116,7 +115,7 @@ function validateForm(){
                     <TBODY>
                     <TR>
                       <TD width=80 bgColor=#eeeeee>&nbsp;<STRONG>送货地址：</STRONG></TD>
-                      <TD bgColor=#eeeeee><A href="<html:rewrite action="/customer/shopping/deliver"/>?directUrl=${directUrl }"><IMG height=17 src="/images/buy/az-s-change.gif" width=45 border=0></A></TD></TR>
+                      <TD bgColor=#eeeeee><A href="/customer/shopping/deliver?directUrl=${directUrl }"><IMG height=17 src="/images/buy/az-s-change.gif" width=45 border=0></A></TD></TR>
 				  </TBODY></TABLE>
                   <TABLE cellSpacing=0 cellPadding=5 width="100%" border=0>
                     <TBODY>
@@ -131,7 +130,7 @@ function validateForm(){
                     <TBODY>
                     <TR>
                       <TD width=150 bgColor=#eeeeee>&nbsp;<STRONG>送货与付款方式：</STRONG></TD>
-                      <TD width="756" bgColor=#eeeeee><a href="<html:rewrite action="/customer/shopping/paymentway"/>#deliverway"><img height=17 src="/images/buy/az-s-change.gif" width=45 border=0></a></TD>
+                      <TD width="756" bgColor=#eeeeee><a href="/customer/shopping/paymentway?directUrl=${directUrl }"><img height=17 src="/images/buy/az-s-change.gif" width=45 border=0></a></TD>
                     </TR></TBODY></TABLE>
                   <TABLE cellSpacing=0 cellPadding=4 width="100%" bgColor=#ffffff border=0>
                     <TBODY>
@@ -174,5 +173,5 @@ function validateForm(){
                   src="/images/buy/az-s-bottom-right-blue-corner.gif" 
                   width=17></TD></TR></TBODY></TABLE></DIV></TD></TR></TBODY></TABLE>
   <DIV align=center></DIV></TD></TR></TBODY></TABLE>
-</html:form>
+</form>
 </BODY></HTML>

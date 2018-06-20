@@ -1,7 +1,5 @@
 package junit.test;
 
-import static org.junit.Assert.*;
-
 import java.util.List;
 
 import org.junit.BeforeClass;
@@ -9,7 +7,6 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import cn.itcast.bean.product.Brand;
 import cn.itcast.bean.product.ProductType;
 import cn.itcast.service.product.ProductTypeService;
 

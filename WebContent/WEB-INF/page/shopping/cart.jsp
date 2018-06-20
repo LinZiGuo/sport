@@ -33,7 +33,7 @@ function getInputsByname(name, etype){//
 function settleAccounts(){
 	if(validateAmount()){		
 		var form = document.forms["buycart"];
-		form.method.value="settleAccounts";
+		form.action="/shopping/cart/manage/settleAccounts";
 		form.submit();
 	}
 }
@@ -41,7 +41,7 @@ function settleAccounts(){
 function modifyAmount(){
 	if(validateAmount()){		
 		var form = document.forms["buycart"];
-		form.method.value="updateAmount";
+		form.action="/shopping/cart/manage/updateAmount";
 		form.submit();
 	}
 }
@@ -86,7 +86,7 @@ function validateAmount(){
           <TD width="24%"><IMG height=31 src="/images/buy/shop-cart-header-blue.gif" width="218" border=0></TD>
           <TD width="34%">如果您修改了商品数量，请点击 
              <img style="CURSOR: hand; " alt="修改数量" src="/images/buy/update-t-sm.gif" value="修改数量" border="0" onClick="javascript:modifyAmount()"></TD>
-          <TD width="14%" align="left"><a href="<html:rewrite action="/shopping/cart/manage" />?method=deleteAll&directUrl=${param.directUrl}"><img style="CURSOR:hand;" alt="清空购物车" src="/images/buy/az-empty-shoppingcard.gif" border="0"></a></TD>
+          <TD width="14%" align="left"><a href="/shopping/cart/manage/deleteAll?directUrl=${param.directUrl}"><img style="CURSOR:hand;" alt="清空购物车" src="/images/buy/az-empty-shoppingcard.gif" border="0"></a></TD>
           <TD width="15%" align=left><a href="/"><img src="/images/buy/as-s-continus.gif" width="116" height="22" border="0"></a></TD>
           <TD width="13%" align=right><img style="CURSOR:hand;" src="/images/buy/az-by-split.gif" width="116" height="22" onClick="javascript:settleAccounts()"></TD>
         </TR>
@@ -95,7 +95,7 @@ function validateAmount(){
   </TR>
 
   <TR>
-    <TD><FORM id="buycart" name="buycart" action="<html:rewrite action="/shopping/cart/manage" />" method="post">
+    <TD><FORM id="buycart" name="buycart" action="/shopping/cart/manage" method="post">
     <INPUT TYPE="hidden" NAME="method" value="">
      <INPUT TYPE="hidden" NAME="directUrl" value="${param.directUrl}">
     <TABLE cellSpacing=0 cellPadding=6 width="100%" border=0> 
@@ -109,12 +109,12 @@ function validateAmount(){
 <!-- loop begin -->
 <c:forEach items="${buyCart.items}" var="item"> 
        <TR vAlign="top">
-        <TD><STRONG><A href="" target="_blank">${item.product.name}</A></STRONG> <span class="h3color">[颜色/样式：<c:forEach items="${item.product.styles}" var="style">${style.name}</c:forEach>]</span><BR><BR></TD>
+        <TD><STRONG><A href="/product/view?productid=${item.product.id }" target="_blank">${item.product.name}</A></STRONG> <span class="h3color">[颜色/样式：<c:forEach items="${item.product.styles}" var="style">${style.name}</c:forEach>]</span><BR><BR></TD>
         <TD width="112" align="center"><SPAN class="price" title="￥${item.product.marketprice}元"><FONT color="black"><S><B>￥${item.product.marketprice}元</B></S></FONT></SPAN></TD>
         <TD width="181"><P align="center"><SPAN class="price"><B>￥${item.product.sellprice} 元</B></SPAN> <BR>
-          为您节省：<SPAN class=price>￥${item.product.savedPrice}元 </SPAN><BR> </P></TD>
-        <TD align="middle" width="73"><INPUT type="text" style="WIDTH: 30px" maxLength="3" value="${item.amount}"  name="amount_${item.product.id}_<c:forEach items="${item.product.styles}" var="style">${style.id}</c:forEach>" onkeypress="javascript:InputIntNumberCheck()"></TD>
-        <TD align="middle" width="66"><a href="<html:rewrite action="/shopping/cart/manage" />?method=delete&directUrl=${param.directUrl }&buyitemid=${item.product.id}-<c:forEach items="${item.product.styles}" var="style">${style.id}</c:forEach>"><img height="17" src="/images/buy/delete.gif" width="45" border="0"></a></TD>
+          为您节省：<SPAN class=price>￥${item.product.marketprice-item.product.sellprice}元 </SPAN><BR> </P></TD>
+        <TD align="middle" width="73"><INPUT type="text" style="WIDTH: 30px" maxLength="3" value="${item.amount}"  name="amount_${item.product.id} <c:forEach items="${item.product.styles}" var="style">${style.id}</c:forEach>" onkeypress="javascript:InputIntNumberCheck()"></TD>
+        <TD align="middle" width="66"><a href="/shopping/cart/manage/delete?directUrl=${param.directUrl }&buyitemid=${item.product.id}-<c:forEach items="${item.product.styles}" var="style">${style.id}</c:forEach>"><img height="17" src="/images/buy/delete.gif" width="45" border="0"></a></TD>
       </TR>
       <TR vAlign="top">
         <TD colSpan="5"><IMG height=1 src="/images/buy/green-pixel.gif" width="100%" border="0"></TD>

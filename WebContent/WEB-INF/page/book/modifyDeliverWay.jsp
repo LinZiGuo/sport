@@ -13,25 +13,24 @@ function checkfm(form){
 </script>
 </head>
 <body bgcolor="#FFFFFF" text="#000000" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-<html:form action="/control/order/manage" method="post" onsubmit="return checkfm(this)">
-<html:hidden property="orderid"/>
-<input type="hidden" name="method" value="modifyDeliverWay">
+<form action="/control/order/manage/modifyDeliverWay" method="post" onsubmit="return checkfm(this)">
+<input type="hidden" name="orderid" value="${param.orderid }"/>
   <table width="90%" border="0" cellspacing="2" cellpadding="3" align="center">
     <tr bgcolor="6f8ac4"><td > <font color="#FFFFFF">修改订单的配送方式：</font></td>
     </tr>
  <c:if test="${orderForm.paymentWay!='COD'}">
     <tr bgcolor="f5f5f5"> 
-      <td><html:radio property="deliverWay" value="GENERALPOST"/>平邮</td>
+      <td><input type="radio" name="deliverWay" value="GENERALPOST" <c:if test="${deliverWay=='GENERALPOST' }">checked='checked'</c:if>/>平邮</td>
     </tr>
     <tr bgcolor="f5f5f5"> 
-      <td><html:radio property="deliverWay" value="EMS"/>国内特快专递EMS</td>
+      <td><input type="radio" name="deliverWay" value="EMS" <c:if test="${deliverWay=='EMS' }">checked='checked'</c:if>/>国内特快专递EMS</td>
     </tr>
  </c:if>
      <tr bgcolor="f5f5f5"> 
-      <td><html:radio property="deliverWay" value="EXPRESSDELIVERY"/>快递送货上门</td>
+      <td><input type="radio" name="deliverWay" value="EXPRESSDELIVERY" <c:if test="${deliverWay=='EXPRESSDELIVERY' }">checked='checked'</c:if>/>快递送货上门</td>
     </tr>
     <tr bgcolor="f5f5f5"> 
-      <td><html:radio property="deliverWay" value="EXIGENCEEXPRESSDELIVERY"/>加急快递送货上门</td>
+      <td><input type="radio" name="deliverWay" value="EXIGENCEEXPRESSDELIVERY" <c:if test="${deliverWay=='EXIGENCEEXPRESSDELIVERY' }">checked='checked'</c:if>/>加急快递送货上门</td>
     </tr>
 
     <tr bgcolor="f5f5f5"> 
@@ -40,7 +39,7 @@ function checkfm(form){
         </div></td>
     </tr>
   </table>
-</html:form>
+</form>
 <br>
 </body>
 </html>

@@ -19,8 +19,8 @@
 </head>
 
 <body bgcolor="#FFFFFF" text="#000000" marginwidth="0" marginheight="0">
-<html:form action="/control/employee/list" method="post">
-<html:hidden property="page"/>
+<form action="/control/employee/list" method="post">
+<input type="hidden" name="page"/>
   <table width="98%" border="0" cellspacing="1" cellpadding="2" align="center">
     <tr ><td colspan="11" bgcolor="6f8ac4" align="right">
     	<%@ include file="/WEB-INF/page/share/fenye.jsp" %>
@@ -41,10 +41,10 @@
 <!---------------------------LOOP START------------------------------>
 <c:forEach items="${pageView.records}" var="entry">
     <tr>
-      <td bgcolor="f5f5f5"> <div align="center"><a href="<html:rewrite action="/control/employee/manage"/>?method=editEmployeeUI&username=${entry.username}">
+      <td bgcolor="f5f5f5"> <div align="center"><a href="/control/employee/manage/editEmployeeUI?username=${entry.username}">
 	  <img src="/images/edit.gif" width="15" height="16" border="0"></a></div></td>
 	  <td bgcolor="f5f5f5"> <div align="center">${entry.username}</div></td>
-      <td bgcolor="f5f5f5"> <div align="center"><a href="<html:rewrite action="/control/employee/manage"/>?method=privilegeGroupSetUI&username=${entry.username}">设置权限</a></div></td>
+      <td bgcolor="f5f5f5"> <div align="center"><a href="/control/employee/manage/privilegeGroupSetUI?username=${entry.username}">设置权限</a></div></td>
       <td bgcolor="f5f5f5"> <div align="center">${entry.realname}</div></td>
       <td bgcolor="f5f5f5"> <div align="center">${entry.gender.name}</div></td>
       <td bgcolor="f5f5f5"> <div align="center">${entry.phone}</div></td>
@@ -54,7 +54,7 @@
       <td bgcolor="f5f5f5"> <div align="center">${entry.department.name}</div></td>
       <td bgcolor="f5f5f5"> <div align="center">
       <c:if test="${entry.visible}">
-      <a href="<html:rewrite action="/control/employee/manage"/>?method=leave&username=${entry.username}">标志为离职</a>
+      <a href="/control/employee/manage/leave?username=${entry.username}">标志为离职</a>
       </c:if> <c:if test="${!entry.visible}"><font color=red>已离职</font></c:if>
       </div></td>
 	</tr>
@@ -65,12 +65,12 @@
           <tr> 
             <td width="5%"></td>
               <td width="85%">
-              <input type="button" class="frm_btn" onClick="javascript:window.location.href='<html:rewrite action="/control/employee/manage"/>?method=regEmployeeUI'" value="添加员工"> &nbsp;&nbsp;
+              <input type="button" class="frm_btn" onClick="javascript:window.location.href='/control/employee/manage/regEmployeeUI'" value="添加员工"> &nbsp;&nbsp;
             </td>
           </tr>
         </table></td>
     </tr>
   </table>
-</html:form>
+</form>
 </body>
 </html>

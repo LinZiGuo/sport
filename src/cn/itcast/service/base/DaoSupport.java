@@ -21,6 +21,11 @@ public abstract class DaoSupport<T> implements DAO<T> {
 
 	@PersistenceContext
 	protected EntityManager em;
+	
+	public void clear(){
+		em.clear();
+	}
+	
 	//实体类
 	protected Class<T> entityClass = GenericsUtils.getSuperClassGenricType(getClass());
 	

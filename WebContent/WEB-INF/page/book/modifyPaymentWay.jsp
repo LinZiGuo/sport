@@ -13,24 +13,23 @@ function checkfm(form){
 </script>
 </head>
 <body bgcolor="#FFFFFF" text="#000000" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-<html:form action="/control/order/manage" method="post" onsubmit="return checkfm(this)">
-<html:hidden property="orderid"/>
-<input type="hidden" name="method" value="modifyPaymentWay">
+<form action="/control/order/manage/modifyPaymentWay" method="post" onsubmit="return checkfm(this)">
+<input type="hidden" name="orderid" value="${param.orderid }"/>
   <table width="90%" border="0" cellspacing="2" cellpadding="3" align="center">
     <tr bgcolor="6f8ac4"><td > <font color="#FFFFFF">修改订单的支付方式：</font></td>
     </tr>
     <tr bgcolor="f5f5f5"> 
-      <td><html:radio property="paymentWay" value="NET"/>网上支付</td>
+      <td><input type="radio" name="paymentWay" value="NET" <c:if test="${paymentWay=='NET' }">checked='checked'</c:if>/>网上支付</td>
     </tr>
     <c:if test="${deliverWay!='GENERALPOST' && deliverWay!='EMS' }">
     <tr bgcolor="f5f5f5"> 
-      <td><html:radio property="paymentWay" value="COD"/>货到付款</td>
+      <td><input type="radio" name="paymentWay" value="COD" <c:if test="${paymentWay=='COD' }">checked='checked'</c:if>/>货到付款</td>
     </tr></c:if>
     <tr bgcolor="f5f5f5"> 
-      <td><html:radio property="paymentWay" value="BANKREMITTANCE"/>银行电汇</td>
+      <td><input type="radio" name="paymentWay" value="BANKREMITTANCE" <c:if test="${paymentWay=='BANKREMITTANCE' }">checked='checked'</c:if>/>银行电汇</td>
     </tr>
      <tr bgcolor="f5f5f5"> 
-      <td><html:radio property="paymentWay" value="POSTOFFICEREMITTANCE"/>邮局汇款</td>
+      <td><input type="radio" name="paymentWay" value="POSTOFFICEREMITTANCE" <c:if test="${paymentWay=='POSTOFFICEREMITTANCE' }">checked='checked'</c:if>/>邮局汇款</td>
     </tr>
     <tr bgcolor="f5f5f5"> 
       <td colspan="2"> <div align="center"> 
@@ -38,7 +37,7 @@ function checkfm(form){
         </div></td>
     </tr>
   </table>
-</html:form>
+</form>
 <br>
 </body>
 </html>

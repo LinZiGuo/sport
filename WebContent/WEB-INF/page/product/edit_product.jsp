@@ -113,7 +113,9 @@ function SureSubmit(objForm){
     </tr>
 	<tr bgcolor="f5f5f5"> 
       <td width="25%" valign="top"> <div align="right">产品简介<font color="#FF0000">*</font> ：</div></td>
-      <td width="75%"><textarea name="description" cols="80" rows="23" >${product.description }</textarea></td>
+      <td width="75%">
+      <textarea name="description" cols="80" rows="23" >${product.description }</textarea>
+      </td>
 	</tr>
     <tr bgcolor="f5f5f5"> 
       <td colspan="2"> <div align="center"> 

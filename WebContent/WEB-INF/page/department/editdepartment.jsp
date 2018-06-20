@@ -18,15 +18,14 @@ function checkfm(form){
 </script>
 </head>
 <body bgcolor="#FFFFFF" text="#000000" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-<html:form action="/control/department/manage" method="post" onsubmit="return checkfm(this)">
-<input type="hidden" name="method" value="editDepartment">
-<html:hidden property="departmentid"/>
+<form action="/control/department/manage/edit" method="post" onsubmit="return checkfm(this)">
+<input type="hidden" name="departmentid" value="${param.departmentid }"/>
   <table width="90%" border="0" cellspacing="2" cellpadding="3" align="center">
     <tr bgcolor="6f8ac4"><td colspan="2"  > <font color="#FFFFFF">修改部门：</font></td>
     </tr>
     <tr bgcolor="f5f5f5"> 
       <td width="22%" > <div align="right">部门名称：</div></td>
-      <td width="78%"> <html:text property="name" size="20" maxlength="20"/>
+      <td width="78%"> <input type="text" name="name" value="${name }" size="20" maxlength="20"/>
         <font color="#FF0000">*</font></td>
     </tr>
     <tr bgcolor="f5f5f5"> 
@@ -35,7 +34,7 @@ function checkfm(form){
         </div></td>
     </tr>
   </table>
-</html:form>
+</form>
 <br>
 </body>
 </html>

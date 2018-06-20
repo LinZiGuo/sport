@@ -2,7 +2,6 @@ package cn.itcast.web.action.product;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -81,9 +80,10 @@ public class ProductInfoManageAction extends ActionSupport implements ModelDrive
 	/**
 	 * 添加商品
 	 * @return
+	 * @throws Exception 
 	 */
 	@Action("add")
-	public String add() {
+	public String add() throws Exception {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		String typeid = request.getParameter("typeid");
 		String sex = request.getParameter("sex");

@@ -25,7 +25,7 @@ import com.sun.image.codec.jpeg.JPEGEncodeParam;
 import com.sun.image.codec.jpeg.JPEGImageEncoder;
 
 /**
- * Í¼ÏñÑ¹Ëõ¹¤¾ß
+ * Í¼ï¿½ï¿½Ñ¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
  * @author lihuoming@sohu.com
  *
  */
@@ -34,10 +34,10 @@ public class ImageSizer {
         private static final long serialVersionUID = 1234162663955668507L;} 
     );
     /**
-     * @param originalFile Ô­Í¼Ïñ
-     * @param resizedFile Ñ¹ËõºóµÄÍ¼Ïñ
-     * @param width Í¼Ïñ¿í
-     * @param format Í¼Æ¬¸ñÊ½ jpg, png, gif(·Ç¶¯»­)
+     * @param originalFile åŸå›¾åƒ
+     * @param resizedFile å‹ç¼©åçš„å›¾åƒ
+     * @param width å›¾åƒå®½
+     * @param format å›¾ç‰‡æ ¼å¼ jpg, png, gif(éåŠ¨ç”»)
      * @throws IOException
      */
     public static void resize(File originalFile, File resizedFile, int width, String format) throws IOException {
@@ -78,8 +78,9 @@ public class ImageSizer {
             }
         }
         Image outputImage = inputImage.getScaledInstance( width, height, java.awt.Image.SCALE_DEFAULT);
-        checkImage( outputImage );        
-        encode(new FileOutputStream(resizedFile), outputImage, format);        
+        checkImage( outputImage );
+        FileOutputStream os = new FileOutputStream(resizedFile);
+        encode(os, outputImage, format);        
     }    
 
     /** Checks the given image for valid width and height. */
@@ -122,11 +123,11 @@ public class ImageSizer {
     } 
     
 	/**
-	 * Ëõ·ÅgifÍ¼Æ¬
+	 * ï¿½ï¿½ï¿½ï¿½gifÍ¼Æ¬
 	 * @param originalFile Ô­Í¼Æ¬
-	 * @param resizedFile Ëõ·ÅºóµÄÍ¼Æ¬
-	 * @param newWidth ¿í¶È
-	 * @param quality Ëõ·Å±ÈÀı (µÈ±ÈÀı)
+	 * @param resizedFile ï¿½ï¿½ï¿½Åºï¿½ï¿½Í¼Æ¬
+	 * @param newWidth ï¿½ï¿½ï¿½
+	 * @param quality ï¿½ï¿½ï¿½Å±ï¿½ï¿½ï¿½ (ï¿½È±ï¿½ï¿½ï¿½)
 	 * @throws IOException
 	 */
     private static void resize(File originalFile, File resizedFile, int newWidth, float quality) throws IOException {

@@ -41,21 +41,20 @@ function checkfm(form){
 </script>
 </head>
 <body bgcolor="#FFFFFF" text="#000000" leftmargin="0" topmargin="0" marginwidth="0" marginheight="0">
-<html:form action="/control/employee/manage" method="post" enctype="multipart/form-data" onsubmit="return checkfm(this)">
-<input type="hidden" name="method" value="editEmployee">
-<html:hidden property="username"/>
+<form action="/control/employee/manage/editEmployee" method="post" enctype="multipart/form-data" onsubmit="return checkfm(this)">
+<input type="hidden" name="username" value="${param.username }"/>
   <table width="90%" border="0" cellspacing="2" cellpadding="3" align="center">
     <tr bgcolor="6f8ac4"><td colspan="2"  > <font color="#FFFFFF">修改员工信息：</font></td>
     </tr>
     <tr bgcolor="f5f5f5"> 
       <td width="22%" > <div align="right">员工姓名：</div></td>
-      <td width="78%"> <html:text property="realname" size="10" maxlength="10"/>
+      <td width="78%"> <input type="text" name="realname" value="${employee.realname }" size="10" maxlength="10"/>
         <font color="#FF0000">*</font></td>
     </tr>
     <tr bgcolor="f5f5f5"> 
       <td width="22%" > <div align="right">性别：</div></td>
-      <td width="78%"> <html:radio property="gender" value="MAN">男</html:radio>
-      <html:radio property="gender" value="WOMEN">女</html:radio></td>
+      <td width="78%"> <input type="radio" name="gender" value="MAN" <c:if test="${employee.gender=='MAN' }">checked='checked'</c:if>>男
+      <input type="radio" name="gender" value="WOMEN" <c:if test="${employee.gender=='WOMEN' }">checked='checked'</c:if>>女</td>
     </tr> 
 	<tr bgcolor="f5f5f5"> 
       <td width="22%" > <div align="right">员工照片：</div></td>
@@ -64,34 +63,34 @@ function checkfm(form){
     </tr>
     <tr bgcolor="f5f5f5"> 
       <td width="22%" > <div align="right">身份证号码：</div></td>
-      <td width="78%"> <html:text property="cardno" size="20" maxlength="18"/>
+      <td width="78%"> <input type="text" name="cardno" value="${employee.idCard.cardno }" size="20" maxlength="18"/>
         <font color="#FF0000">*</font></td>
     </tr>
     <tr bgcolor="f5f5f5"> 
       <td width="22%" > <div align="right">身份证出生日期：</div></td>
-      <td width="78%"> <html:text property="birthday" size="20" maxlength="18"/>
+      <td width="78%"> <input type="date" name="birthday" value="${employee.idCard.birthday }" size="20" maxlength="18"/>
         <font color="#FF0000">*</font></td>
     </tr>
     <tr bgcolor="f5f5f5"> 
       <td width="22%" > <div align="right">身份证地址：</div></td>
-      <td width="78%"> <html:text property="address" size="60" maxlength="100"/>
+      <td width="78%"> <input type="text" name="address" value="${employee.idCard.address }" size="60" maxlength="100"/>
         <font color="#FF0000">*</font></td>
     </tr>  
     <tr bgcolor="f5f5f5"> 
       <td width="22%" > <div align="right">联系电话：</div></td>
-      <td width="78%"> <html:text property="phone" size="20" maxlength="18"/><font color="#FF0000">*</font></td>
+      <td width="78%"> <input type="text" name="phone" value="${employee.phone }" size="20" maxlength="18"/><font color="#FF0000">*</font></td>
     </tr> 
     <tr bgcolor="f5f5f5"> 
       <td width="22%" > <div align="right">电子邮件：</div></td>
-      <td width="78%"> <html:text property="email" size="20" maxlength="18"/></td>
+      <td width="78%"> <input type="email" name="email" value="${employee.email }" size="20" maxlength="18"/></td>
     </tr> 
     <tr bgcolor="f5f5f5"> 
       <td width="22%" > <div align="right">学历：</div></td>
-      <td width="78%"> <html:text property="degree" size="10" maxlength="5"/></td>
+      <td width="78%"> <input type="text" name="degree" value="${employee.degree }" size="10" maxlength="5"/></td>
     </tr>
      <tr bgcolor="f5f5f5"> 
       <td width="22%" > <div align="right">毕业院校：</div></td>
-      <td width="78%"> <html:text property="school" size="20" maxlength="20"/></td>
+      <td width="78%"> <input type="text" name="school" value="${employee.school }" size="20" maxlength="20"/></td>
     </tr>
     <tr bgcolor="f5f5f5"> 
       <td width="22%" > <div align="right">所在部门：</div></td>
@@ -109,7 +108,7 @@ function checkfm(form){
         </div></td>
     </tr>
   </table>
-</html:form>
+</form>
 <br>
 </body>
 </html>
